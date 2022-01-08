@@ -306,6 +306,6 @@ async function main() {
 main();
 
 // START SERVER
-app.listen(3000, function(req,res){
+app.listen(7070, function(req,res){
     console.log("Server started")
 })

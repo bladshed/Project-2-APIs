@@ -8,6 +8,27 @@ Initialize project
 - yarn add cors
 
 Test API post
+Localhost: http://localhost:7070/
+    OUTFITS
+        GET
+            http://localhost:7070/outfits
+            http://localhost:7070/outfits/:id
+        POST
+            http://localhost:7070/outfits
+        PUT
+            http://localhost:7070/outfits/:id
+        DELETE
+            http://localhost:7070/outfits/:id
+
+    REVIEWS (object array in Outfit record)
+        GET
+            http://localhost:7070/reviews/:reviewId
+        POST
+            http://localhost:7070/outfits/:id/reviews/add
+        PUT
+            http://localhost:7070/reviews/:reviewId
+        DELETE
+            http://localhost:7070/reviews/:reviewId
 
 Outfit object
 {
