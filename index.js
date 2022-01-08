@@ -304,7 +304,77 @@ async function main() {
                 'message':"Review record doesnt exist"
             })
         }
-      });
+    });
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////  SEARCH APIs  //////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // allows users to search for outfit records
+    app.get('/outfit-search', async function(req,res){
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+
+        // example query
+        // db.collection('sightings').find({
+        //     'description': {$regex: "LT2A", $options:'i'},
+        //     'food': {
+        //         '$in': ["fried rice"]
+        //     }
+        // })
+
+        // another example query
+        // {'$and': [{type: {'$in':['casual', 'streetwear']}, gender: {'$in':['male']}}]}
+
+        // if the user didn't specify any search criteria, the search will return all documents
+        let criteria = {"$and" : []};
+
+        // set type query
+        if (req.query.types) {
+            let typesArray = [];
+            if (!Array.isArray(req.query.types)) {
+                typesArray.push(req.query.types)
+            } else {
+                typesArray = req.query.types;
+            }
+
+            criteria.$and.push({
+                type: {"$in": typesArray}
+            })
+        }
+
+        // set gender query
+        if (req.query.genders) {
+            let gendersArray = [];
+            if (!Array.isArray(req.query.genders)) {
+                gendersArray.push(req.query.genders)
+            } else {
+                gendersArray = req.query.genders;
+            }
+
+            criteria.$and.push( {
+                gender: {"$in": gendersArray}
+            });
+        }
+
+        // empty criteria if query is empty
+        if(criteria.$and.length == 0){
+            criteria = {};
+        }
+
+        try {
+            // get query results
+            let results = await db.collection('outfits').find(criteria).toArray();
+            console.log('results: ' + results);
+            res.json(results);
+        }
+        catch(e) {
+            res.status(500);
+            res.json({
+                'error':"Unable to fetch records"
+            })
+        }
+    });
 }
 // run the main function immediately after we define it
 main();
