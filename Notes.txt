@@ -8,10 +8,19 @@ Initialize project
 - yarn add cors
 
 Test API post
+
+Outfit object
 {
     "submittedBy": "lebron@yahoo.com",
     "type": "casual",
     "gender": "male",
     "img_url": "https://www.si.com/.image/t_share/MTY4MTI4Mzg0MDUyODMxNTA1/lebron-james.jpg",
     "description": "casual LeBron outfit"
+}
+
+Review object
+{
+    "submittedBy": "random@yahoo.com",
+    "rating": "5",
+    "comment": "Cool Jerry Lorenzo style"
 }

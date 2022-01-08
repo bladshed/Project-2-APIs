@@ -132,6 +132,7 @@ async function main() {
         }
     })
 
+    // delete outfit data
     // for endpoints that delete documents, we use app.delete
     app.delete('/outfits/:id', async function(req,res){
         // get instance of Mongo db
@@ -144,10 +145,165 @@ async function main() {
             'message':"Record has been deleted"
         })
     })
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////  REVIEWS APIs  //////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // get review record attached to an existing outfit document
+    app.get('/reviews/:reviewId', async function(req,res){
+
+        // to select or to retrieve a sub-document
+        // step 1. select the main document that the sub-document belongs to
+
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+
+        try {
+            // 1st code
+            // let results = await db.collection('outfits').findOne({
+            //     'reviews._id': ObjectId(req.params.reviewId)
+            // }, 
+            // // second argument to the findOne function allows us to provide an object with options
+            // {
+            //     'projection': { 
+            //         // projection is to select which keys of the document to show
+            //         'reviews': {
+            //             '$elemMatch':{
+            //                 '_id': ObjectId(req.params.reviewId) // only show the element from the notes array where its _id matches
+            //                                                 // the provided noteid
+            //             }
+            //         }
+            //     }
+            // });
+
+            // 2nd code
+            let results = await db.collection('outfits').findOne({
+                'reviews._id': ObjectId(req.params.reviewId)
+            })
+
+            res.json({
+                'review': results.reviews[0]
+            })
+        } catch(e) {
+            res.status(500);
+            res.json({
+                'message':"Unable to update document",
+                'error': e.message
+            })
+        }
+    })
+
+    // add new review record
+    app.post('/outfits/:id/reviews/add', async function(req,res){
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+
+        // create new review object
+        let newReview = {
+            '_id': ObjectId(), // create a new ObjectId
+            'submittedBy': req.body.submittedBy,
+            'rating': req.body.rating,
+            'comment': req.body.comment,
+            'dateCreated': new Date()
+        }
+
+        try {
+            await db.collection('outfits').updateOne({
+                '_id': ObjectId(req.params.id),
+            },{
+                '$push': {
+                    'reviews': newReview
+                }
+            })
+            res.json({
+                'message':"success"
+            })
+        } catch(e) {
+            res.status(500);
+            res.json({
+                'message':"Unable to update document",
+                'error': e.message
+            })
+        }
+    })
+
+    // edit a review attached to an existing outfit document
+    app.put('/reviews/:reviewId', async function(req,res){
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+
+        // get review
+        let record = await db.collection('outfits').findOne({
+            'reviews._id': ObjectId(req.params.reviewId)
+        });
+
+        // check if outfit record exists
+        if(record){
+            await db.collection('outfits').updateOne({
+                'reviews._id': ObjectId(req.params.reviewId)
+            },{
+                '$set': {
+                    'reviews.$.rating': req.body.rating,    // $ refers to the index of the element
+                    'reviews.$.comment': req.body.comment,  // where its _id matches req.params.noteid
+                    'reviews.$.dateModified': new Date()
+                }
+            })
+
+            res.json({
+                'message':"success"
+            })
+        } else {
+            res.status(500);
+            res.json({
+                'message':"Unable to update document",
+                'error': e.message
+            })
+        }
+    })
+
+    // delete a review attached to an existing outfit document
+    app.delete('/reviews/:reviewId', async function(req,res){
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+
+        // get outfit record via review id
+        let record = await db.collection('outfits').findOne({
+            'reviews._id': ObjectId(req.params.reviewId)
+        });
+
+        // check if outfit record exists
+        if(record){
+            try {
+                await db.collection('outfits').updateOne({
+                    '_id': ObjectId(record._id)
+                },{
+                    '$pull':{
+                        'reviews': {
+                            '_id': ObjectId(req.params.reviewId)
+                        }
+                    }
+                })
+                res.json({
+                    'message':"Review record has been deleted"
+                })
+            } catch(e) {
+                res.status(500);
+                res.json({
+                    'message':"Unable to update document",
+                    'error': e.message
+                })
+            }
+        } else {
+            res.status(500);
+            res.json({
+                'message':"Review record doesnt exist"
+            })
+        }
+      });
 }
 // run the main function immediately after we define it
 main();
-
 
 // START SERVER
 app.listen(3000, function(req,res){
