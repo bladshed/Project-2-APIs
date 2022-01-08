@@ -62,43 +62,22 @@ async function main() {
                 'error': "Failed to add record"
             })
         }
-      
     })
 
-    // allows users to search for food sightings
+    // get all outfit records
     app.get('/outfits', async function(req,res){
         const db = MongoUtil.getDB();
-        // db.collection('sightings').find({
-        //     'description': {$regex: "LT2A", $options:'i'},
-        //     'food': {
-        //         '$in': ["fried rice"]
-        //     }
-        // })
-
-        console.log(req.query);
-
-        // define an empty search critera
-        // if the user didn't specify any search critera, the search will return all documents
-        let critera = {};
-
-        // if the client provides a value for description in the axios.get
-        // note: for the get method, if the client sends data via params in the API call, it's available via req.query
-        if (req.query.description) {
-            critera["description"] = {
-                '$regex': req.query.description,
-                '$options': 'i'
-            }
-        }
-
-        // if the client provides a value for the food key in the axios.get
-        if (req.query.food) {
-            critera["foods"] = {
-                "$in":[ req.query.food]
-            }
-        }
-
         try {
-            let results = await db.collection('sightings').find(critera).toArray();
+            // let results = await db.collection('sightings').find(critera).toArray();
+            let results = await db.collection('outfits').find({},{
+                'projection': {
+                    'submittedBy': 1,
+                    'type': 1,
+                    'gender': 1
+                }
+            }).toArray();
+
+            console.log(results);
             res.json(results);
         }
         catch(e) {
