@@ -16,6 +16,15 @@ app.use(express.json()); // allows clients (such as browsers) to send JSON reque
 // enable cors so that javascript ran from other domain can access the endpoint
 app.use(cors());
 
+async function getOutfitByReviewId(db, reviewId) {
+    // get outfit record via review id
+    let record = await db.collection('outfits').findOne({
+        'reviews._id': ObjectId(reviewId)
+    });
+
+    return record;
+}
+
 async function main() {
 
     // we want to connect to the database
@@ -178,12 +187,10 @@ async function main() {
             // });
 
             // 2nd code
-            let results = await db.collection('outfits').findOne({
-                'reviews._id': ObjectId(req.params.reviewId)
-            })
+            let result = await getOutfitByReviewId(db, req.params.reviewId);
 
             res.json({
-                'review': results.reviews[0]
+                'review': result.reviews[0]
             })
         } catch(e) {
             res.status(500);
@@ -233,10 +240,8 @@ async function main() {
         // get instance of Mongo db
         const db = MongoUtil.getDB();
 
-        // get review
-        let record = await db.collection('outfits').findOne({
-            'reviews._id': ObjectId(req.params.reviewId)
-        });
+        // get outfit record via review id
+        let record = await getOutfitByReviewId(db, req.params.reviewId);
 
         // check if outfit record exists
         if(record){
@@ -268,9 +273,7 @@ async function main() {
         const db = MongoUtil.getDB();
 
         // get outfit record via review id
-        let record = await db.collection('outfits').findOne({
-            'reviews._id': ObjectId(req.params.reviewId)
-        });
+        let record = await getOutfitByReviewId(db, req.params.reviewId);
 
         // check if outfit record exists
         if(record){
