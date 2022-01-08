@@ -90,11 +90,23 @@ async function main() {
         }
     })
 
+    // get outfit record by id
+    app.get('/outfits/:id', async function(req,res){
+        // get instance of Mongo db
+        const db = MongoUtil.getDB();
+        let result = await db.collection('outfits').findOne({
+            '_id':ObjectId(req.params.id)
+        });
+        res.json({
+            'outfit': result
+        })  
+    })
+
     // modify outfit record
     app.put('/outfits/:id', async function(req,res){
         // get instance of Mongo db
         const db = MongoUtil.getDB();
-        
+
         try {
             await db.collection('outfits').updateOne({
                 '_id':ObjectId(req.params.id)
@@ -120,31 +132,12 @@ async function main() {
         }
     })
 
-    // we are using PUT instead of POST because we are updating an existing document by providing a replacement document
-    app.put('/food_sighting/:id', async function(req,res){
-        try {
-            await db.collection('sightings').updateOne({
-                '_id':ObjectId(req.params.id)
-            }, {
-                'description': req.body.description, // for post, put and patch, the data sent to the endpoint is in req.body
-                'foods': req.body.foods,
-                'date': new Date(req.body.date) || new Date()
-            })
-            res.json({
-                'message':"success"
-            })
-        } catch(e) {
-            res.status(500);
-            res.json({
-                'message':"Unable to update document"
-            })
-        }
-    })
-
     // for endpoints that delete documents, we use app.delete
-    app.delete('/food_sighting/:id', async function(req,res){
+    app.delete('/outfits/:id', async function(req,res){
+        // get instance of Mongo db
         const db = MongoUtil.getDB();
-        await db.collection('sightings').remove({
+
+        await db.collection('outfits').remove({
             '_id':ObjectId(req.params.id)
         })
         res.json({
