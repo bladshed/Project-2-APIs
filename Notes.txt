@@ -6,3 +6,12 @@ Initialize project
 - yarn add dotenvmo
 - yarn add mongodb
 - yarn add cors
+
+Test API post
+{
+    "submittedBy": "lebron@yahoo.com",
+    "type": "casual",
+    "gender": "male",
+    "img_url": "https://www.si.com/.image/t_share/MTY4MTI4Mzg0MDUyODMxNTA1/lebron-james.jpg",
+    "description": "casual LeBron outfit"
+}
