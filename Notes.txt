@@ -1,0 +1,8 @@
+Initialize project
+- npm init
+- npm install -g nodemon
+- npm install -g yarn
+- yarn add express
+- yarn add dotenvmo
+- yarn add mongodb
+- yarn add cors
