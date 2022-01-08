@@ -16,6 +16,7 @@ app.use(express.json()); // allows clients (such as browsers) to send JSON reque
 // enable cors so that javascript ran from other domain can access the endpoint
 app.use(cors());
 
+// get outfit record via reviewId
 async function getOutfitByReviewId(db, reviewId) {
     // get outfit record via review id
     let record = await db.collection('outfits').findOne({
