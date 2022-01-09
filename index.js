@@ -326,8 +326,18 @@ async function main() {
         // another example query
         // {'$and': [{type: {'$in':['casual', 'streetwear']}, gender: {'$in':['male']}}]}
 
-        // if the user didn't specify any search criteria, the search will return all documents
+        // initialize query variable
         let criteria = {"$and" : []};
+
+        // set description query
+        if (req.query.description) {
+            criteria.$and.push({
+                description: {
+                    $regex: req.query.description,
+                    $options:'i'
+                }
+            })
+        }
 
         // set type query
         if (req.query.types) {
@@ -357,6 +367,7 @@ async function main() {
             });
         }
 
+        // if the user didn't specify any search criteria, the search will return all documents
         // empty criteria if query is empty
         if(criteria.$and.length == 0){
             criteria = {};
