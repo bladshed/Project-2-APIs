@@ -49,7 +49,10 @@ async function main() {
                     'submittedBy': 1,
                     'type': 1,
                     'gender': 1,
-                    'description' : 1
+                    'img_url': 1,
+                    'description' : 1,
+                    'dateCreated': 1,
+                    'dateModified': 1
                 }
             }).toArray();
 
