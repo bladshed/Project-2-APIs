@@ -56,7 +56,6 @@ async function main() {
                 }
             }).toArray();
 
-            console.log(results);
             res.json(results);
         }
         catch(e) {
@@ -377,9 +376,10 @@ async function main() {
         }
 
         try {
+            // console.log("criteria: " + JSON.stringify(criteria));
             // get query results
             let results = await db.collection('outfits').find(criteria).toArray();
-            console.log('results: ' + results);
+            // console.log('results: ' + JSON.stringify(results));
             res.json(results);
         }
         catch(e) {
