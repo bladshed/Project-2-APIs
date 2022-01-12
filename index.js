@@ -394,6 +394,6 @@ async function main() {
 main();
 
 // START SERVER
-app.listen(7070, function(req,res){
+app.listen(process.env.PORT, function(req,res){
     console.log("Server started")
 })

@@ -45,3 +45,17 @@ Review object
     "rating": "5",
     "comment": "Cool Jerry Lorenzo style"
 }
+
+Deploy to Heroku
+- create account
+- npm install -g heroku (install heroku)
+- heroku login -i
+- heroku create <project name>
+- example: heroku create fms-project-2-apis
+- add Procfile (case sensitive)
+- inside package.json file
+  - add inside scripts
+    - "start" : "node index.js"
+- change port to "process.env.PORT"
+- push to heroku
+  - git push heroku master
