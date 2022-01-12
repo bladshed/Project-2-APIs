@@ -46,7 +46,7 @@ Review object
     "comment": "Cool Jerry Lorenzo style"
 }
 
-Deploy to Heroku
+Deploy to Heroku:
 - create account
 - npm install -g heroku (install heroku)
 - heroku login -i
@@ -57,5 +57,12 @@ Deploy to Heroku
   - add inside scripts
     - "start" : "node index.js"
 - change port to "process.env.PORT"
-- push to heroku
-  - git push heroku master
+- git push to heroku
+  - "git push heroku master"
+- go to heroku
+  - settings
+    - click "Revel Config Vars"
+
+Your app link: https://fms-project-2-apis.herokuapp.com/
+
+**ALWAYS COMMIT & PUSH TO GITHUB BEFORE YOU PUSH TO HEROKU
