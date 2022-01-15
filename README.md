@@ -80,7 +80,7 @@ parameters:
       > `https://fms-project-2-apis.herokuapp.com/outfit-search`
 
    * EXAMPLE
-      https://fms-project-2-apis.herokuapp.com/outfit-search?description=outfit
+      > `https://fms-project-2-apis.herokuapp.com/outfit-search?description=outfit`
 
 
 ### TECHNOLOGIES USED
