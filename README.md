@@ -3,8 +3,7 @@ This project serves as the APIs to do CRUD of outfit and review. The main goal o
 
 Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-project-2-apis.herokuapp.com/)
 
-### USER STORIES
-Sample data:
+### SAMPLE DATA (in json format)
 
 "outfit": {
 	"_id":{"$oid":"61d98b510f66d2b3b19b65ef"},
