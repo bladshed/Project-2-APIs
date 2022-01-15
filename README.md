@@ -35,8 +35,8 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
 }
 
 ### APIs
-*OUTFITS
-*DATA BODY TO PASS
+* OUTFITS
+* DATA BODY TO PASS
 
 "review":
    {
@@ -46,44 +46,36 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
       "comment":"not that bad 2"
    }
 	
-   *GET
+   * GET
       > `https://fms-project-2-apis.herokuapp.com/outfits`
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
-   *POST
+   * POST
       > `https://fms-project-2-apis.herokuapp.com/outfits`
-   *PUT
+   * PUT
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
-   *DELETE
+   * DELETE
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
 
-*REVIEWS (object array in Outfit record)
-*DATA BODY TO PASS
+* REVIEWS (object array in Outfit record)
+* DATA BODY TO PASS
 
-"outfit": {
-   "submittedBy":"michaeljordan@yahoo.com",
-   "type":"formal",
-   "gender":"male",
-   "img_url":"https://content.api.news/v3/images/bin/3dbe60a618f51afcf6b7917e8093667a",
-   "description":"Michael Jordan formal outfit"
-}
-
-   *GET
+   * GET
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
-   *POST
+   * POST
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id/reviews/add`
-   *PUT
+   * PUT
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
-   *DELETE
+   * DELETE
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
 
-*SEARCH
-*DATA BODY TO PASS
+* SEARCH
+* DATA BODY TO PASS
 parameters: 
    "description": <string>
    "types": <array>
    "genders": <array>
 
-   *GET
+   * GET
       > `https://fms-project-2-apis.herokuapp.com/outfit-search`
 
    * EXAMPLE
