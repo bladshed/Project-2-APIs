@@ -46,8 +46,9 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
       "comment":"not that bad 2"
    }
 	
-   * GET
+   * GET all
       > `https://fms-project-2-apis.herokuapp.com/outfits`
+   * GET single
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
    * POST
       > `https://fms-project-2-apis.herokuapp.com/outfits`
