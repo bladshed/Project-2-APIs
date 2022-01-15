@@ -11,24 +11,28 @@ Test API post
 Localhost: http://localhost:7070/
     OUTFITS
         GET
-            http://localhost:7070/outfits
-            http://localhost:7070/outfits/:id
+            https://fms-project-2-apis.herokuapp.com/outfits
+            https://fms-project-2-apis.herokuapp.com/outfits/:id
         POST
-            http://localhost:7070/outfits
+            https://fms-project-2-apis.herokuapp.com/outfits
         PUT
-            http://localhost:7070/outfits/:id
+            https://fms-project-2-apis.herokuapp.com/outfits/:id
         DELETE
-            http://localhost:7070/outfits/:id
+            https://fms-project-2-apis.herokuapp.com/outfits/:id
 
     REVIEWS (object array in Outfit record)
         GET
-            http://localhost:7070/reviews/:reviewId
+            https://fms-project-2-apis.herokuapp.com/reviews/:reviewId
         POST
-            http://localhost:7070/outfits/:id/reviews/add
+            https://fms-project-2-apis.herokuapp.com/outfits/:id/reviews/add
         PUT
-            http://localhost:7070/reviews/:reviewId
+            https://fms-project-2-apis.herokuapp.com/reviews/:reviewId
         DELETE
-            http://localhost:7070/reviews/:reviewId
+            https://fms-project-2-apis.herokuapp.com/reviews/:reviewId
+    
+    SEARCH
+        GET
+            https://fms-project-2-apis.herokuapp.com/outfit-search
 
 Outfit object
 {
