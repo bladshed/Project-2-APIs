@@ -269,7 +269,7 @@ parameters:
 
 
 ### CREDITS
-* Thanks to Paul Chor, our teacher for Node js, Express and Vue js
-* Thanks to Sam, our teacher for Mongo DB
+* Thanks to Mr Paul Chor, our teacher for Node js, Express and Vue js
+* Thanks to Mr Sam, our teacher for Mongo DB
 * For my code snippets, tutorials, questions and saviour of all developers
    * [Google](https://www.google.com/)
