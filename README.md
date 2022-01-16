@@ -36,8 +36,8 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
 
 ### APIs
 
-#### OUTFITS
 ____________
+#### OUTFITS
 * DATA BODY TO PASS
 
 "outfit": {
@@ -62,9 +62,8 @@ ____________
    * DELETE
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
 
-
-#### REVIEWS (object array in Outfit record)
 ____________________________________________
+#### REVIEWS (object array in Outfit record)
 * DATA BODY TO PASS
 
 "review":
@@ -84,9 +83,8 @@ ____________________________________________
    * DELETE
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
 
-
-#### SEARCH
 ___________
+#### SEARCH
 * DATA BODY TO PASS
 parameters: 
    "description": <string>
