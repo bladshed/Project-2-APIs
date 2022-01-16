@@ -35,16 +35,21 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
 }
 
 ### APIs
+
 #### OUTFITS
+____________
 * DATA BODY TO PASS
 
-"review":
-   {
-      "_id":{"$oid":"61dd65a5121606ca5893c698"},
-      "submittedBy":"friend@yahoo.com",
-      "rating":"2",
-      "comment":"not that bad 2"
-   }
+"outfit": {
+	"_id":{"$oid":"61d98b510f66d2b3b19b65ef"},
+	"submittedBy":"michaeljordan@yahoo.com",
+	"type":"formal",
+	"gender":"male",
+	"img_url":"https://content.api.news/v3/images/bin/3dbe60a618f51afcf6b7917e8093667a",
+	"description":"Michael Jordan formal outfit",
+	"dateCreated":{"$date":{"$numberLong":"1641646929805"}},
+	"dateModified":{"$date":{"$numberLong":"1641984580247"}}
+}
 	
    * GET all
       > `https://fms-project-2-apis.herokuapp.com/outfits`
@@ -57,8 +62,18 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
    * DELETE
       > `https://fms-project-2-apis.herokuapp.com/outfits/:id`
 
+
 #### REVIEWS (object array in Outfit record)
+____________________________________________
 * DATA BODY TO PASS
+
+"review":
+   {
+      "_id":{"$oid":"61dd65a5121606ca5893c698"},
+      "submittedBy":"friend@yahoo.com",
+      "rating":"2",
+      "comment":"not that bad 2"
+   }
 
    * GET
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
@@ -69,7 +84,9 @@ Base URL of the API:  [https://fms-project-2-apis.herokuapp.com/](https://fms-pr
    * DELETE
       > `https://fms-project-2-apis.herokuapp.com/reviews/:reviewId`
 
+
 #### SEARCH
+___________
 * DATA BODY TO PASS
 parameters: 
    "description": <string>
